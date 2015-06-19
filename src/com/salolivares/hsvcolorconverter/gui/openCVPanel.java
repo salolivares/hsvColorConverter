@@ -6,9 +6,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Jonathan on 6/16/2015.
- */
 public class openCVPanel extends AbstractColorChooserPanel implements ActionListener {
     float h,s,v = 0;
     double nH, nS, nV = 0;
@@ -19,6 +16,10 @@ public class openCVPanel extends AbstractColorChooserPanel implements ActionList
     JLabel sLabel = new JLabel("Saturation: " + s);
     JLabel vLabel = new JLabel("Value: " + v);
 
+    /**
+     * Every time the user switches to the openCV HSV panel the values
+     * update their value according to the user selected color
+     */
     @Override
     public void updateChooser() {
         Color color = getColorFromModel();
@@ -43,6 +44,9 @@ public class openCVPanel extends AbstractColorChooserPanel implements ActionList
 
     }
 
+    /**
+     * Defines the panel layout
+     */
     @Override
     protected void buildChooser() {
         setLayout(new GridLayout(3,1));

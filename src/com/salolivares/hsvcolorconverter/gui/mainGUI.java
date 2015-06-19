@@ -3,9 +3,6 @@ package com.salolivares.hsvcolorconverter.gui;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Jonathan on 6/16/2015.
- */
 public class mainGUI {
 
     /**
