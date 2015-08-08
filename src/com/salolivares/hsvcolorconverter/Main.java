@@ -9,7 +9,6 @@ class Main {
             @Override
             public void run() {
                 mainGUI gui = new mainGUI();
-                gui.createWindow();
             }
         });
     }

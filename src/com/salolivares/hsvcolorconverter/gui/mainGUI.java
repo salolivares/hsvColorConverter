@@ -3,21 +3,20 @@ package com.salolivares.hsvcolorconverter.gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class mainGUI {
+public class mainGUI extends JFrame{
 
-    /**
-     * method outside classes use to create the color picker frame
-     */
-    public void createWindow(){
+    public mainGUI(){
+        super("Color Code Converter for OpenCV");
+        initUI();
+    }
+
+    private void initUI(){
         // Declare all JComponents that are being used
-        JFrame mainFrame = new JFrame("Color Code Converter for OpenCV");
         JPanel colorPicker = new JPanel(new BorderLayout());
         JColorChooser colorC = new JColorChooser(Color.BLUE);
         openCVPanel openCV = new openCVPanel();
-        JMenuBar menuBar = new JMenuBar();
 
-        // Fill menu bar with options to upload an image.
-
+        // Create menu bar
 
         // Customize the stock java color picker
         colorC.setBorder(BorderFactory.createTitledBorder("Choose Color"));
@@ -27,13 +26,13 @@ public class mainGUI {
         colorPicker.add(colorC, BorderLayout.PAGE_END);
 
         // add color picker
-        mainFrame.add(colorPicker, BorderLayout.PAGE_END);
+        add(colorPicker, BorderLayout.PAGE_END);
 
         // customize jframe behavior
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
-        mainFrame.setResizable(false);
-        mainFrame.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
     }
 }
