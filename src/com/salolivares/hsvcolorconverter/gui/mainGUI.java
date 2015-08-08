@@ -9,25 +9,30 @@ public class mainGUI {
      * method outside classes use to create the color picker frame
      */
     public void createWindow(){
-        /**
-        Declare all JComponents that are being used
-         */
+        // Declare all JComponents that are being used
         JFrame mainFrame = new JFrame("Color Code Converter for OpenCV");
         JPanel colorPicker = new JPanel(new BorderLayout());
         JColorChooser colorC = new JColorChooser(Color.BLUE);
         openCVPanel openCV = new openCVPanel();
+        JMenuBar menuBar = new JMenuBar();
 
-        //Customize the stock java colorpicker
+        // Fill menu bar with options to upload an image.
+
+
+        // Customize the stock java color picker
         colorC.setBorder(BorderFactory.createTitledBorder("Choose Color"));
         colorC.addChooserPanel(openCV);
 
-        // add to panel
+        // add openCV panel to color picker panel
         colorPicker.add(colorC, BorderLayout.PAGE_END);
+
+        // add color picker
+        mainFrame.add(colorPicker, BorderLayout.PAGE_END);
 
         // customize jframe behavior
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setContentPane(colorPicker);
         mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
     }
