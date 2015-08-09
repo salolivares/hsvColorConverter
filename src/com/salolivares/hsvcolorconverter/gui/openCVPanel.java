@@ -19,6 +19,9 @@ public class openCVPanel extends AbstractColorChooserPanel implements ActionList
     /**
      * Every time the user switches to the openCV HSV panel the values
      * update their value according to the user selected color
+     *
+     * TODO:
+     *   - correct the algorithm to convert the color codes to openCV HSV
      */
     @Override
     public void updateChooser() {

@@ -40,12 +40,18 @@ public class mainGUI extends JFrame{
 
     private void createMenuBar(){
         // Declare JComponents used
-        JMenuBar menubar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem exitLabel = new JMenuItem("Exit");
         JMenuItem openLabel = new JMenuItem("Open");
 
         // add action listeners to labels
+        openLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+            }
+        });
         exitLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -59,9 +65,8 @@ public class mainGUI extends JFrame{
         fileMenu.addSeparator();
         fileMenu.add(exitLabel);
 
-        menubar.add(fileMenu);
-
-        setJMenuBar(menubar);
-
+        //add to frame
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
     }
 }
