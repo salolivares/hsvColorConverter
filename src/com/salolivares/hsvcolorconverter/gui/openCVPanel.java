@@ -23,8 +23,6 @@ public class openCVPanel extends AbstractColorChooserPanel implements ActionList
      * Every time the user switches to the openCV HSV panel the values
      * update their value according to the user selected color
      *
-     * TODO:
-     *   - correct the algorithm to convert the color codes to openCV HSV
      */
     @Override
     public void updateChooser() {
@@ -37,12 +35,12 @@ public class openCVPanel extends AbstractColorChooserPanel implements ActionList
         Color.RGBtoHSB(r,g,b,hsv);
 
         h = hsv[0] * 360;
-        s = hsv[1] * 100;
-        v = hsv[2] * 100;
+        s = hsv[1];
+        v = hsv[2];
 
         nH = Math.round((double)h/2);
-        nS = Math.round((double)s*2 + 25);
-        nV = Math.round((double)v*2 + 25);
+        nS = s*255;
+        nV = v*255;
 
         hField.setText(""+nH);
         sField.setText(""+nS);
