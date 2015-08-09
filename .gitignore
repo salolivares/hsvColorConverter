@@ -18,6 +18,8 @@ $RECYCLE.BIN/
 *.lnk
 
 *.iml
+out/*
+src/META-INF/*
 
 # =========================
 # Operating System Files
