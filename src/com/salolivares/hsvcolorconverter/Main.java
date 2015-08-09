@@ -1,7 +1,7 @@
 package com.salolivares.hsvcolorconverter;
 import com.salolivares.hsvcolorconverter.gui.*;
 
-import java.awt.*;
+import java.awt.EventQueue;
 
 class Main {
     public static void main(String[] args){

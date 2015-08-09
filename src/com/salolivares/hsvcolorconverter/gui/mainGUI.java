@@ -1,8 +1,11 @@
 package com.salolivares.hsvcolorconverter.gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
 public class mainGUI extends JFrame{
 
@@ -30,6 +33,14 @@ public class mainGUI extends JFrame{
         // add color picker
         add(colorPicker, BorderLayout.PAGE_END);
 
+        //set icon
+        try {
+            setIconImage(ImageIO.read(new File("res/icon.png")));
+        }
+        catch (IOException exc) {
+            exc.printStackTrace();
+        }
+
         // customize JFrame behavior
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -42,8 +53,10 @@ public class mainGUI extends JFrame{
         // Declare JComponents used
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
+        JMenu helpMenu = new JMenu("Help");
         JMenuItem exitLabel = new JMenuItem("Exit");
         JMenuItem openLabel = new JMenuItem("Open");
+        JMenuItem aboutLabel = new JMenuItem("About");
 
         // add action listeners to labels
         openLabel.addMouseListener(new MouseAdapter() {
@@ -59,14 +72,22 @@ public class mainGUI extends JFrame{
                 System.exit(0);
             }
         });
+        aboutLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+            }
+        });
 
-        // add labels to file menu
+        // add labels to menu
         fileMenu.add(openLabel);
         fileMenu.addSeparator();
         fileMenu.add(exitLabel);
+        helpMenu.add(aboutLabel);
 
         //add to frame
         menuBar.add(fileMenu);
+        menuBar.add(helpMenu);
         setJMenuBar(menuBar);
     }
 }

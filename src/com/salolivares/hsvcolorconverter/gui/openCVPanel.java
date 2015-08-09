@@ -7,15 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class openCVPanel extends AbstractColorChooserPanel implements ActionListener {
-    float h,s,v = 0;
-    double nH, nS, nV = 0;
-    int r,g,b = 0;
-    float[] hsv = new float[3];
+    private float h,s,v = 0;
+    private double nH, nS, nV = 0;
+    private int r,g,b = 0;
+    private float[] hsv = new float[3];
 
-    JLabel hLabel = new JLabel("Hue: " + h);
-    JLabel sLabel = new JLabel("Saturation: " + s);
-    JLabel vLabel = new JLabel("Value: " + v);
+    JLabel hLabel = new JLabel("Hue: ");
+    JLabel sLabel = new JLabel("Saturation: ");
+    JLabel vLabel = new JLabel("Value: ");
 
+    JTextField hField = new JTextField(""+h);
+    JTextField sField = new JTextField(""+s);
+    JTextField vField = new JTextField(""+v);
     /**
      * Every time the user switches to the openCV HSV panel the values
      * update their value according to the user selected color
@@ -41,9 +44,9 @@ public class openCVPanel extends AbstractColorChooserPanel implements ActionList
         nS = Math.round((double)s*2 + 25);
         nV = Math.round((double)v*2 + 25);
 
-        hLabel.setText("Hue: " + nH);
-        sLabel.setText("Saturation: " + nS);
-        vLabel.setText("Value: " + nV);
+        hField.setText(""+nH);
+        sField.setText(""+nS);
+        vField.setText(""+nV);
 
     }
 
@@ -52,11 +55,14 @@ public class openCVPanel extends AbstractColorChooserPanel implements ActionList
      */
     @Override
     protected void buildChooser() {
-        setLayout(new GridLayout(3,1));
+        setLayout(new GridLayout(3,2));
 
         add(hLabel);
+        add(hField);
         add(sLabel);
+        add(sField);
         add(vLabel);
+        add(vField);
     }
 
     @Override
