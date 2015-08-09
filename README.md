@@ -5,8 +5,10 @@ Color code utility for OpenCV
 ## Requirements
  - For running: Java
  - For compiling: Java SE Development Kit 8
+ 
 ## Running
  - Run included .jar file
+ 
 ## Compiling
  - TODO
 
