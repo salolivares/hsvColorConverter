@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class mainGUI extends JFrame{
 
+    private JFileChooser fc;
+
     public mainGUI(){
         super("Color Code Converter for OpenCV");
         initUI();
@@ -66,7 +68,28 @@ public class mainGUI extends JFrame{
         openLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
+                if(fc == null){
+                    fc = new JFileChooser();
+
+                    //add custom file filter
+                    fc.addChoosableFileFilter(new ImageFilter());
+                    fc.setAcceptAllFileFilterUsed(false);
+
+                    //add preview pane
+                    fc.setAccessory(new ImagePreview(fc));
+                }
+
+                int returnVal = fc.showOpenDialog(null);
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    File file = fc.getSelectedFile();
+                    //fill this in
+                    System.out.print("Opening: " + file.getName() + ".\n");
+                } else {
+                    System.out.print("Open command cancelled by user.\n");
+                }
+
+                //reset file choose for next time
+                fc.setSelectedFile(null);
             }
         });
         exitLabel.addMouseListener(new MouseAdapter() {
