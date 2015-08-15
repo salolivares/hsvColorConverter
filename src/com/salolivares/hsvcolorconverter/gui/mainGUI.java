@@ -6,12 +6,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import com.salolivares.hsvcolorconverter.util.isOpen;
 
 public class mainGUI extends JFrame{
 
     private JFileChooser fc;
     private File file;
     private pictureViewer pv;
+    private isOpen pvIsOpen;
 
     public mainGUI(){
         super("Color Code Converter for OpenCV");
@@ -26,6 +28,7 @@ public class mainGUI extends JFrame{
         JPanel colorPicker = new JPanel(new BorderLayout());
         JColorChooser colorC = new JColorChooser(Color.BLUE);
         openCVPanel openCV = new openCVPanel();
+        pvIsOpen = isOpen.NO;
 
         createMenuBar();
         colorC.setBorder(BorderFactory.createTitledBorder("Choose Color"));
@@ -75,7 +78,12 @@ public class mainGUI extends JFrame{
                     file = fc.getSelectedFile();
                     pv = new pictureViewer(file);
                     // TODO: run in different thread
-                    pv.openPictureViewer();
+                    // TODO: Only allow one pictureViewer to be open
+                    if(pvIsOpen == isOpen.NO){
+                        pv.openPictureViewer(mainGUI.this);
+                    } else{
+                        // TODO: Display error
+                    }
                     System.out.print("Opening: " + file.getName() + ".\n");
                 } else {
                     System.out.print("Open command cancelled by user.\n");
@@ -106,5 +114,13 @@ public class mainGUI extends JFrame{
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
         setJMenuBar(menuBar);
+    }
+
+    public isOpen getPvIsOpen() {
+        return pvIsOpen;
+    }
+
+    public void setPvIsOpen(isOpen pvIsOpen) {
+        this.pvIsOpen = pvIsOpen;
     }
 }

@@ -1,14 +1,14 @@
 package com.salolivares.hsvcolorconverter.gui;
 
 
+import com.salolivares.hsvcolorconverter.util.isOpen;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
@@ -16,12 +16,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 public class pictureViewer extends JFrame {
     BufferedImage image;
     imageCanvas canvas;
     AffineTransform at;
     Point2D point;
     JSlider slider;
+    JFrame frame;
 
     pictureViewer(File file){
         try {
@@ -31,6 +33,7 @@ public class pictureViewer extends JFrame {
         }
         canvas = new imageCanvas();
         panningHandler p = new panningHandler();
+        frame = new JFrame("Image Viewer");
         canvas.addMouseListener(p);
         canvas.addMouseMotionListener(p);
         canvas.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -44,13 +47,21 @@ public class pictureViewer extends JFrame {
         slider.addChangeListener(new scaleHandler());
     }
 
-    public void openPictureViewer(){
-        JFrame frame = new JFrame();
+    public void openPictureViewer(final mainGUI mGUI){
         frame.getContentPane().add(slider, BorderLayout.NORTH);
         frame.getContentPane().add(canvas, BorderLayout.CENTER);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(mGUI);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mGUI.setPvIsOpen(isOpen.NO);
+            }
+        });
         frame.setVisible(true);
+
+        mGUI.setPvIsOpen(isOpen.YES);
     }
 
     public class imageCanvas extends JComponent {
@@ -69,7 +80,7 @@ public class pictureViewer extends JFrame {
 
             // Blank screen
             g2.setColor(Color.WHITE);
-            g2.fillRect(0,0,getWidth(),getHeight());
+            g2.fillRect(0, 0, getWidth(), getHeight());
 
             at = new AffineTransform(st);
 
@@ -90,7 +101,7 @@ public class pictureViewer extends JFrame {
         }
 
         public Dimension getPreferredSize(){
-            return new Dimension(500, 500);
+            return new Dimension(1280, 720);
         }
     }
 
