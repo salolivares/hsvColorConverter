@@ -16,6 +16,7 @@ public class mainGUI extends JFrame{
     private File file;
     private pictureViewer pv;
     private isOpen pvIsOpen;
+    private JColorChooser colorC;
 
     public mainGUI(){
         super("Color Code Converter for OpenCV");
@@ -28,7 +29,7 @@ public class mainGUI extends JFrame{
      */
     private void initUI(){
         JPanel colorPicker = new JPanel(new BorderLayout());
-        JColorChooser colorC = new JColorChooser(Color.BLUE);
+        colorC = new JColorChooser(Color.BLUE);
         openCVPanel openCV = new openCVPanel();
         pvIsOpen = isOpen.NO;
         pv = new pictureViewer(this);
@@ -79,7 +80,7 @@ public class mainGUI extends JFrame{
                 int returnVal = fc.showOpenDialog(null);
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     file = fc.getSelectedFile();
-                    pv.openPictureViewer(file, mainGUI.this);
+                    pv.openPictureViewer(file);
                     // TODO: run in different thread?
                     System.out.print("Opening: " + file.getName() + ".\n");
                 } else {
@@ -119,5 +120,9 @@ public class mainGUI extends JFrame{
 
     public void setPvIsOpen(isOpen pvIsOpen) {
         this.pvIsOpen = pvIsOpen;
+    }
+
+    public void setColorForChooser(Color color){
+        colorC.setColor(color);
     }
 }

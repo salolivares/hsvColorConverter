@@ -16,23 +16,44 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-// TODO: allow user to use scroll wheel to zoom in/out
-// TODO: fix bug on first pv open where image does not display
-public class pictureViewer extends JFrame {
+/**
+ * TODO: allow user to use scroll wheel to zoom in/out
+ * TODO: fix bug on first pv open where image does not display
+ * TODO: color capture is not working, fix it
+ */
+
+public class pictureViewer {
+    mainGUI mGUI;
     BufferedImage image;
     imageCanvas canvas;
     AffineTransform at;
     Point2D point;
     JSlider slider;
     JFrame frame;
+    Robot robot;
+    Color pixelColor;
+
+    public Color getPixelColor() {
+        return pixelColor;
+    }
+    public void setPixelColor(Color pixelColor) {
+        this.pixelColor = pixelColor;
+    }
 
     pictureViewer(final mainGUI mGUI){
         canvas = new imageCanvas();
         panningHandler p = new panningHandler();
         frame = new JFrame("Image Viewer");
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        this.mGUI = mGUI;
         canvas.addMouseListener(p);
         canvas.addMouseMotionListener(p);
         canvas.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        pixelColor = new Color(255,255,255);
 
         // Zoom handling
         slider = new JSlider(JSlider.HORIZONTAL, 0, 300, 100);
@@ -56,7 +77,7 @@ public class pictureViewer extends JFrame {
         });
     }
 
-    public void openPictureViewer(File file, mainGUI mGUI){
+    public void openPictureViewer(File file){
         try {
             image = ImageIO.read(file);
         } catch (IOException e) {
@@ -113,6 +134,9 @@ public class pictureViewer extends JFrame {
         }
     }
 
+    /**
+     * panningHandler also captures pixel color from the users mouse clicks
+     */
     class panningHandler implements MouseListener, MouseMotionListener {
         double rX, rY;
         AffineTransform it;
@@ -133,6 +157,10 @@ public class pictureViewer extends JFrame {
             rX = point.getX();
             rY = point.getY();
             it = at;
+
+            // Capture color of pixel
+            setPixelColor(robot.getPixelColor(e.getX(),e.getY()));
+            mGUI.setColorForChooser(getPixelColor());
         }
 
         @Override
