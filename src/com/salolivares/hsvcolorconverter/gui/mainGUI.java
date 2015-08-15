@@ -1,12 +1,14 @@
 package com.salolivares.hsvcolorconverter.gui;
 
+import com.salolivares.hsvcolorconverter.util.isOpen;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import com.salolivares.hsvcolorconverter.util.isOpen;
+
 
 public class mainGUI extends JFrame{
 
