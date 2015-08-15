@@ -19,7 +19,6 @@ import java.io.IOException;
 /**
  * TODO: allow user to use scroll wheel to zoom in/out
  * TODO: fix bug on first pv open where image does not display
- * TODO: color capture is not working, fix it
  */
 
 public class pictureViewer {
@@ -159,7 +158,7 @@ public class pictureViewer {
             it = at;
 
             // Capture color of pixel
-            setPixelColor(robot.getPixelColor(e.getX(),e.getY()));
+            setPixelColor(robot.getPixelColor(e.getXOnScreen(),e.getYOnScreen()));
             mGUI.setColorForChooser(getPixelColor());
         }
 
