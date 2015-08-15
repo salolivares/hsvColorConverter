@@ -16,7 +16,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+// TODO: allow user to use scroll wheel to zoom in/out
+// TODO: fix bug on first pv open where image does not display
 public class pictureViewer extends JFrame {
     BufferedImage image;
     imageCanvas canvas;
