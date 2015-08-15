@@ -18,9 +18,11 @@ public class mainGUI extends JFrame{
     private pictureViewer pv;
     private isOpen pvIsOpen;
     private JColorChooser colorC;
+    private Color initialColor;
 
     public mainGUI(){
         super("Color Code Converter for OpenCV");
+        initialColor = Color.BLUE;
         initUI();
     }
 
@@ -29,8 +31,9 @@ public class mainGUI extends JFrame{
      */
     private void initUI(){
         JPanel colorPicker = new JPanel(new BorderLayout());
-        colorC = new JColorChooser(Color.BLUE);
-        openCVPanel openCV = new openCVPanel();
+        colorC = new JColorChooser(initialColor);
+        openCVPanel oPV = new openCVPanel();
+        openCVChooserPanel openCV = new openCVChooserPanel(oPV);
         pvIsOpen = isOpen.NO;
         pv = new pictureViewer(this);
 
@@ -38,7 +41,8 @@ public class mainGUI extends JFrame{
         colorC.setBorder(BorderFactory.createTitledBorder("Choose Color"));
         colorC.addChooserPanel(openCV);
         colorPicker.add(colorC, BorderLayout.PAGE_END);
-        add(colorPicker, BorderLayout.PAGE_END);
+        add(colorPicker, BorderLayout.PAGE_START);
+        add(oPV, BorderLayout.PAGE_END);
 
         try {
             setIconImage(ImageIO.read(new File("res/icon.png")));
