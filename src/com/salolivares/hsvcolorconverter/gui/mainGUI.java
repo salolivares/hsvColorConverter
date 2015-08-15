@@ -25,8 +25,7 @@ public class mainGUI extends JFrame{
     }
 
     /**
-     * TODO:
-     * - Add a panel showing current hsv values so you don't have to go back and forth
+     * TODO: Add a panel showing current hsv values so you don't have to go back and forth
      */
     private void initUI(){
         JPanel colorPicker = new JPanel(new BorderLayout());
@@ -82,7 +81,6 @@ public class mainGUI extends JFrame{
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     file = fc.getSelectedFile();
                     pv.openPictureViewer(file);
-                    // TODO: run in different thread?
                     System.out.print("Opening: " + file.getName() + ".\n");
                 } else {
                     System.out.print("Open command cancelled by user.\n");

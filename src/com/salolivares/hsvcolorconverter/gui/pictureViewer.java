@@ -17,8 +17,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * TODO: allow user to use scroll wheel to zoom in/out
- * TODO: fix bug on first pv open where image does not display
+ * TODO: allow user to use scroll wheel to zoom in/out [!!]
+ * TODO: fix bug on first pv open where image does not display [!!!]
+ * TODO: change cursor to eyedropper on click
  */
 
 public class pictureViewer {
@@ -55,7 +56,7 @@ public class pictureViewer {
         pixelColor = new Color(255,255,255);
 
         // Zoom handling
-        slider = new JSlider(JSlider.HORIZONTAL, 0, 300, 100);
+        slider = new JSlider(JSlider.HORIZONTAL, 0, 400, 25);
         slider.setMajorTickSpacing(25);
         slider.setMinorTickSpacing(5);
         slider.setPaintTicks(true);
