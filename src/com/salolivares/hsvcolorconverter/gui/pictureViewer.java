@@ -25,12 +25,7 @@ public class pictureViewer extends JFrame {
     JSlider slider;
     JFrame frame;
 
-    pictureViewer(File file){
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    pictureViewer(final mainGUI mGUI){
         canvas = new imageCanvas();
         panningHandler p = new panningHandler();
         frame = new JFrame("Image Viewer");
@@ -45,9 +40,8 @@ public class pictureViewer extends JFrame {
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.addChangeListener(new scaleHandler());
-    }
 
-    public void openPictureViewer(final mainGUI mGUI){
+        // JFrame
         frame.getContentPane().add(slider, BorderLayout.NORTH);
         frame.getContentPane().add(canvas, BorderLayout.CENTER);
         frame.pack();
@@ -59,8 +53,21 @@ public class pictureViewer extends JFrame {
                 mGUI.setPvIsOpen(isOpen.NO);
             }
         });
-        frame.setVisible(true);
+    }
 
+    public void openPictureViewer(File file, mainGUI mGUI){
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // If picture viewer is already open, open image in same picture viewer
+        if (mGUI.getPvIsOpen() == isOpen.NO){
+            frame.setVisible(true);
+        } else{
+            canvas.repaint();
+        }
         mGUI.setPvIsOpen(isOpen.YES);
     }
 

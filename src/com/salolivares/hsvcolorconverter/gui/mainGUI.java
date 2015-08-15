@@ -29,6 +29,7 @@ public class mainGUI extends JFrame{
         JColorChooser colorC = new JColorChooser(Color.BLUE);
         openCVPanel openCV = new openCVPanel();
         pvIsOpen = isOpen.NO;
+        pv = new pictureViewer(this);
 
         createMenuBar();
         colorC.setBorder(BorderFactory.createTitledBorder("Choose Color"));
@@ -76,14 +77,8 @@ public class mainGUI extends JFrame{
                 int returnVal = fc.showOpenDialog(null);
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     file = fc.getSelectedFile();
-                    pv = new pictureViewer(file);
-                    // TODO: run in different thread
-                    // TODO: Only allow one pictureViewer to be open
-                    if(pvIsOpen == isOpen.NO){
-                        pv.openPictureViewer(mainGUI.this);
-                    } else{
-                        // TODO: Display error
-                    }
+                    pv.openPictureViewer(file, mainGUI.this);
+                    // TODO: run in different thread?
                     System.out.print("Opening: " + file.getName() + ".\n");
                 } else {
                     System.out.print("Open command cancelled by user.\n");
