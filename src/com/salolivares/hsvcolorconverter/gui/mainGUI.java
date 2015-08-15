@@ -10,6 +10,8 @@ import java.io.IOException;
 public class mainGUI extends JFrame{
 
     private JFileChooser fc;
+    private File file;
+    private pictureViewer pv;
 
     public mainGUI(){
         super("Color Code Converter for OpenCV");
@@ -18,28 +20,19 @@ public class mainGUI extends JFrame{
 
     /**
      * TODO:
-     * - Add a panel showing current hsv values do you dont have to go back and forth
+     * - Add a panel showing current hsv values so you don't have to go back and forth
      */
     private void initUI(){
-        // Declare all JComponents that are being used
         JPanel colorPicker = new JPanel(new BorderLayout());
         JColorChooser colorC = new JColorChooser(Color.BLUE);
         openCVPanel openCV = new openCVPanel();
 
-        // Create menu bar
         createMenuBar();
-
-        // Customize the stock java color picker
         colorC.setBorder(BorderFactory.createTitledBorder("Choose Color"));
         colorC.addChooserPanel(openCV);
-
-        // add openCV panel to color picker panel
         colorPicker.add(colorC, BorderLayout.PAGE_END);
-
-        // add color picker
         add(colorPicker, BorderLayout.PAGE_END);
 
-        //set icon
         try {
             setIconImage(ImageIO.read(new File("res/icon.png")));
         }
@@ -47,7 +40,7 @@ public class mainGUI extends JFrame{
             exc.printStackTrace();
         }
 
-        // customize JFrame behavior
+        // Customize JFrame behavior
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);
@@ -56,7 +49,6 @@ public class mainGUI extends JFrame{
     }
 
     private void createMenuBar(){
-        // Declare JComponents used
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenu helpMenu = new JMenu("Help");
@@ -64,31 +56,32 @@ public class mainGUI extends JFrame{
         JMenuItem openLabel = new JMenuItem("Open");
         JMenuItem aboutLabel = new JMenuItem("About");
 
-        // add action listeners to labels
         openLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if(fc == null){
                     fc = new JFileChooser();
 
-                    //add custom file filter
+                    // Add custom file filter
                     fc.addChoosableFileFilter(new ImageFilter());
                     fc.setAcceptAllFileFilterUsed(false);
 
-                    //add preview pane
+                    // Add preview pane
                     fc.setAccessory(new ImagePreview(fc));
                 }
 
                 int returnVal = fc.showOpenDialog(null);
                 if(returnVal == JFileChooser.APPROVE_OPTION){
-                    File file = fc.getSelectedFile();
-                    //fill this in
+                    file = fc.getSelectedFile();
+                    pv = new pictureViewer(file);
+                    // TODO: run in different thread
+                    pv.openPictureViewer();
                     System.out.print("Opening: " + file.getName() + ".\n");
                 } else {
                     System.out.print("Open command cancelled by user.\n");
                 }
 
-                //reset file choose for next time
+                // Reset file choose for next time file chooser is open
                 fc.setSelectedFile(null);
             }
         });
@@ -106,13 +99,10 @@ public class mainGUI extends JFrame{
             }
         });
 
-        // add labels to menu
         fileMenu.add(openLabel);
         fileMenu.addSeparator();
         fileMenu.add(exitLabel);
         helpMenu.add(aboutLabel);
-
-        //add to frame
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
         setJMenuBar(menuBar);
