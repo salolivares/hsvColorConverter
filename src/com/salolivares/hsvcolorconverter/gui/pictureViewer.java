@@ -17,9 +17,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * TODO: allow user to use scroll wheel to zoom in/out [!!]
  * TODO: fix bug on first pv open where image does not display [!!!]
- * TODO: change cursor to eyedropper on click
  */
 
 public class pictureViewer {
@@ -63,6 +61,7 @@ public class pictureViewer {
         slider.setPaintLabels(true);
         slider.addChangeListener(new scaleHandler());
 
+
         // JFrame
         frame.getContentPane().add(slider, BorderLayout.NORTH);
         frame.getContentPane().add(canvas, BorderLayout.CENTER);
@@ -73,6 +72,28 @@ public class pictureViewer {
             @Override
             public void windowClosing(WindowEvent e) {
                 mGUI.setPvIsOpen(isOpen.NO);
+            }
+        });
+        frame.addMouseWheelListener(new MouseWheelListener() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int s = e.getWheelRotation();
+                if(s < 0){
+                    slider.setValue(slider.getValue() + 2);
+                } else if(s > 0){
+                    slider.setValue(slider.getValue() - 2);
+                }
+            }
+        });
+        canvas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
     }

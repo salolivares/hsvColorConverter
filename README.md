@@ -13,5 +13,9 @@ Color code utility for OpenCV
  - TODO
 
 ## To Do:
- - [ ] Correct algorithm that converts RGB, HSV, to openCV HSV
- - [ ] Add option to open image and select a color from that image.
+ - [ ] Fix bugs related to image viewer
+ - [ ] Write a make file (Maven, Gradle, Ant)
+ - [ ] Write user guide and proper documentation. 
+ - [X] Correct algorithm that converts RGB, HSV, to openCV HSV
+ - [X] Add option to open image and select a color from that image.
+ 
