@@ -66,6 +66,7 @@ public class mainGUI extends JFrame{
         JMenuItem exitLabel = new JMenuItem("Exit");
         JMenuItem openLabel = new JMenuItem("Open");
         JMenuItem aboutLabel = new JMenuItem("About");
+        JMenuItem userguideLabel = new JMenuItem("User Guide");
 
         openLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -97,7 +98,6 @@ public class mainGUI extends JFrame{
         exitLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
                 System.exit(0);
             }
         });
@@ -111,6 +111,7 @@ public class mainGUI extends JFrame{
         fileMenu.add(openLabel);
         fileMenu.addSeparator();
         fileMenu.add(exitLabel);
+        helpMenu.add(userguideLabel);
         helpMenu.add(aboutLabel);
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);

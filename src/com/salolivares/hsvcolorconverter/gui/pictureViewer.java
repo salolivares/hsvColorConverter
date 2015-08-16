@@ -161,6 +161,7 @@ public class pictureViewer {
             // Capture color of pixel
             setPixelColor(robot.getPixelColor(e.getXOnScreen(),e.getYOnScreen()));
             mGUI.setColorForChooser(getPixelColor());
+
         }
 
         @Override

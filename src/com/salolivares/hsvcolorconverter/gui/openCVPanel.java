@@ -25,7 +25,6 @@ public class openCVPanel extends JPanel {
         updateColor(0,0,0);
 
         setBorder(BorderFactory.createTitledBorder("OpenCV Color Values"));
-        setLayout(new GridLayout(3,2));
 
         add(hLabel);
         add(hField);
