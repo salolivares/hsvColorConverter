@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class openCVPanel extends JPanel {
-    JLabel hLabel;
-    JLabel sLabel;
-    JLabel vLabel;
+    private JLabel hLabel;
+    private JLabel sLabel;
+    private JLabel vLabel;
 
-    JTextField hField;
-    JTextField sField;
-    JTextField vField;
+    private JTextField hField;
+    private JTextField sField;
+    private JTextField vField;
+
 
     openCVPanel(){
         hLabel = new JLabel("Hue: ");
@@ -23,6 +24,7 @@ public class openCVPanel extends JPanel {
 
         updateColor(0,0,0);
 
+        setBorder(BorderFactory.createTitledBorder("OpenCV Color Values"));
         setLayout(new GridLayout(3,2));
 
         add(hLabel);
