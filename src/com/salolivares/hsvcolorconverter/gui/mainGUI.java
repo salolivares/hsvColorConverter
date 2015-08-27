@@ -2,6 +2,7 @@ package com.salolivares.hsvcolorconverter.gui;
 
 import com.salolivares.hsvcolorconverter.util.ImageFilter;
 import com.salolivares.hsvcolorconverter.util.ImagePreview;
+import com.salolivares.hsvcolorconverter.util.Utils;
 import com.salolivares.hsvcolorconverter.util.isOpen;
 
 import javax.imageio.ImageIO;
@@ -104,6 +105,12 @@ public class mainGUI extends JFrame{
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+            }
+        });
+        userguideLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Utils.openURL("http://www.google.com");
             }
         });
 

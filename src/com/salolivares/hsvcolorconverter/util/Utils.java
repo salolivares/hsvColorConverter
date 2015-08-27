@@ -33,9 +33,9 @@ package com.salolivares.hsvcolorconverter.util;
 
 
 import java.io.File;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 
-/* Utils.java is used by FileChooserDemo2.java. */
 public class Utils {
     public final static String jpeg = "jpeg";
     public final static String jpg = "jpg";
@@ -66,6 +66,41 @@ public class Utils {
         } else {
             System.err.println("Couldn't find file: " + path);
             return null;
+        }
+    }
+
+    public static void openURL(String url){
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if( os.indexOf( "win" ) >= 0 ){
+            Runtime rt = Runtime.getRuntime();
+            try {
+                rt.exec( "rundll32 url.dll,FileProtocolHandler " + url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if ( os.indexOf( "mac" ) >= 0 ){
+            Runtime rt = Runtime.getRuntime();
+            try {
+                rt.exec( "open " + url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if ( os.indexOf( "nix") >=0 || os.indexOf( "nux") >=0 ){
+            Runtime rt = Runtime.getRuntime();
+            String[] browsers = {"firefox", "mozilla", "chrome"};
+
+            StringBuffer cmd = new StringBuffer();
+            for (int i=0; i<browsers.length; i++)
+                cmd.append( (i==0  ? "" : " || " ) + browsers[i] +" \"" + url + "\" ");
+
+            try {
+                rt.exec(new String[] { "sh", "-c", cmd.toString() });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else{
+            System.out.println("Error, Couldn't open URL");
         }
     }
 }

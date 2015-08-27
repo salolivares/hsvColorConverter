@@ -5,6 +5,7 @@ Color code utility for OpenCV
  -  Fix bugs related to image viewer
  -  Write a make file (Maven, Gradle, Ant)
  -  Write user guide and proper documentation. 
+ -  Create log file for errors
 
 ## Requirements
  - For running: Java
