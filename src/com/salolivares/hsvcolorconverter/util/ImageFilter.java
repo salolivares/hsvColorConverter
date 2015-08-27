@@ -1,4 +1,4 @@
-package com.salolivares.hsvcolorconverter.gui;
+package com.salolivares.hsvcolorconverter.util;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -37,7 +37,6 @@ import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
-/* ImageFilter.java is used by FileChooserDemo2.java. */
 public class ImageFilter extends FileFilter {
 
     //Accept all directories and all gif, jpg, tiff, or png files.

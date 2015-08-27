@@ -1,5 +1,7 @@
 package com.salolivares.hsvcolorconverter.gui;
 
+import com.salolivares.hsvcolorconverter.util.ImageFilter;
+import com.salolivares.hsvcolorconverter.util.ImagePreview;
 import com.salolivares.hsvcolorconverter.util.isOpen;
 
 import javax.imageio.ImageIO;

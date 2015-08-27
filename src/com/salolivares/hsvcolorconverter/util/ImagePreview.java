@@ -1,4 +1,4 @@
-package com.salolivares.hsvcolorconverter.gui;
+package com.salolivares.hsvcolorconverter.util;
 
 
 /*
@@ -37,7 +37,6 @@ import java.beans.*;
 import java.awt.*;
 import java.io.File;
 
-/* ImagePreview.java by FileChooserDemo2.java. */
 public class ImagePreview extends JComponent
         implements PropertyChangeListener {
     ImageIcon thumbnail = null;
