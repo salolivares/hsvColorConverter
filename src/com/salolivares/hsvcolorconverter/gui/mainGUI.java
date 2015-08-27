@@ -26,9 +26,6 @@ public class mainGUI extends JFrame{
         initUI();
     }
 
-    /**
-     * TODO: Add a panel showing current hsv values so you don't have to go back and forth
-     */
     private void initUI(){
         JPanel colorPicker = new JPanel(new BorderLayout());
         colorC = new JColorChooser(initialColor);

@@ -20,6 +20,7 @@ $RECYCLE.BIN/
 *.iml
 out/*
 src/META-INF/*
+.idea
 
 # =========================
 # Operating System Files
